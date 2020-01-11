@@ -3,7 +3,7 @@
 [Environment](#environment)<br>
 [EPICS base](#epicsBase)<br>
 [ACAI](#ACAI)<br>
-[Qwt](#Qwr)<br>
+[Qwt](#Qwt)<br>
 [EPICS Qt](#EpicsQt)<br>
 
 # <a name="environment"></a><span style='color:#006666'>Environment</span>
