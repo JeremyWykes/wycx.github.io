@@ -231,7 +231,7 @@ ACAI 1.5.4 using EPICS 3.15.7
 ```
 
 
-# <a name="qwt"></a><span style='color:#006666'>Qwt</span>
+# <a name="Qwt"></a><span style='color:#006666'>Qwt</span>
 
 * Obtain the source for the 6.1.3 release of Qwt from [SourceForge](https://sourceforge.net/projects/qwt/files/qwt/6.1.3/)
 * Unzip to `C:\epicsQt\qwt-6.1.3_src`
