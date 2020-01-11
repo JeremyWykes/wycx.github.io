@@ -1,4 +1,4 @@
-# ![](epicsqt_logo.png?raw=true) <span style='color:#006666'>Building EPICS base, QE Framework and qegui on Windows 10 x64 with Qt 5.14 and MSVC2017</span>
+# <span style='color:#006666'>Building EPICS base, QE Framework and qegui on Windows 10 x64 with Qt 5.14 and MSVC2017</span>
 
 [Environment](#environment)<br>
 [EPICS base](#epicsBase)<br>
