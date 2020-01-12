@@ -1,0 +1,1 @@
+windows 10, mingw, qt 5.8, epics7
