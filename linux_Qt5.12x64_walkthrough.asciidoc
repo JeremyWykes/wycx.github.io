@@ -1,0 +1,108 @@
+= Linux walkthrough
+:source-highlighter: rouge
+
+== EPICS base
+
+[source,shell]
+----
+jeremy@baniant /opt/epics
+$ wget https://github.com/epics-base/epics-base/archive/R7.0.3.1.tar.gz
+
+jeremy@baniant /opt/epics
+$ tar -xvf R7.0.3.1.tar.gz
+
+jeremy@baniant /opt/epics
+$ mv epics-base-R7.0.3.1/ base/
+
+jeremy@baniant /opt/epics
+$ cd base
+
+jeremy@baniant /opt/epics/base
+$ make -j 4
+
+jeremy@baniant /opt/epics/base
+$ make -j 4 install
+
+jeremy@baniant /opt/epics/base
+$ bin/linux-x86_64/softIoc
+dbLoadDatabase("/opt/epics/base/bin/linux-x86_64/../../dbd/softIoc.dbd")
+softIoc_registerRecordDeviceDriver(pdbbase)
+epics> iocInit
+Starting iocInit
+############################################################################
+## EPICS R7.0.3.1
+## EPICS Base built Jan 13 2020
+############################################################################
+iocRun: All initialization complete
+epics> exit
+----
+
+* Make a `.bashEpics` file in your home directory:
+[source,shell]
+----
+export EPICS_ROOT=/opt/epics
+export EPICS_BASE=${EPICS_ROOT}/base
+export EPICS_HOST_ARCH=`${EPICS_BASE}/startup/EpicsHostArch`
+export EPICS_BASE_BIN=${EPICS_BASE}/bin/${EPICS_HOST_ARCH}
+export EPICS_BASE_LIB=${EPICS_BASE}/lib/${EPICS_HOST_ARCH}
+if [ "" = "${LD_LIBRARY_PATH}" ]; then
+    export LD_LIBRARY_PATH=${EPICS_BASE_LIB}
+else
+    export LD_LIBRARY_PATH=${EPICS_BASE_LIB}:${LD_LIBRARY_PATH}
+fi
+export PATH=${PATH}:${EPICS_BASE_BIN}
+----
+* Add the following to `.bashrc`:
+----
+if [ -f ~/.bashEpics ]; then
+    . ~/.bashEpics
+fi
+----
+
+== ACAI
+[source,shell]
+----
+jeremy@baniant /opt/epics
+$ git clone https://github.com/andrewstarritt/acai.git
+Cloning into 'acai'...
+remote: Enumerating objects: 76, done.
+remote: Counting objects: 100% (76/76), done.
+remote: Compressing objects: 100% (55/55), done.
+remote: Total 751 (delta 45), reused 47 (delta 21), pack-reused 675
+Receiving objects: 100% (751/751), 377.70 KiB | 538.00 KiB/s, done.
+Resolving deltas: 100% (549/549), done.
+
+jeremy@baniant /opt/epics
+$ cd acai/
+
+jeremy@baniant /opt/epics/acai
+$ joe configure/RELEASE
+
+#EPICS_BASE=/opt/epics/base
+
+jeremy@baniant /opt/epics/acai
+$ make -j 4
+
+jeremy@baniant /opt/epics/acai
+$ make -j 4 install
+
+jeremy@baniant /opt/epics/acai
+$ bin/linux-x86_64/acai_monitor
+acai_monitor: No PV name(s) specified
+
+jeremy@baniant /opt/epics/acai
+$ bin/linux-x86_64/acai_monitor -v
+ACAI 1.5.4 using EPICS 7.0.3.1
+----
+
+== Qwt
+
+== caQtDM
+----
+jeremy@baniant /opt/epicsQt
+$ wget https://github.com/caqtdm/caqtdm/archive/V4.2.4.tar.gz
+
+jeremy@baniant /opt/epicsQt
+$ tar -xvf V4.2.4.tar.gz
+
+----

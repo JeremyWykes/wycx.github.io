@@ -1,17 +1,20 @@
-= Building EPICS base, QE Framework and qegui on Windows 10 x64 with Qt 5.9.9 and MSVC2013
+= pass:[<span style='color:#006666'>Building EPICS base, QE Framework and qegui on Windows 10 x64 with Qt 5.9.9 and MSVC2013</span>]
+:source-highlighter: rouge
 :toc:
 
-== Environment
+
+
+== pass:[<span style='color:#006666'>Environment</span>]
 These instructions have been developed on Microsoft Windows 10 Enterprise x64 and Windows 10 Education x64. Should work on other versions of Windows 10, Windows 8 and Windows 7. You will have to make the appropriate adjustments if you want a 32-bit build.
 
-== Tools
+== pass:[<span style='color:#006666'>Tools</span>]
 
-=== Microsoft Visual Studio Community
+=== pass:[<span style='color:#006666'>Microsoft Visual Studio Community</span>]
 * Obtain the https://visualstudio.microsoft.com/vs/older-downloads/[Microsoft Visual Studio Community 2013] installer.
 * I did not choose any optional features
 * I chose to install to `c:\devtools\Microsoft Visual Studio 12.0` rather than `c:\Program Files\Microsoft Visual Studio 12.0`
 * Check the versions and locations:
-[source]
+[source,Batchfile]
 ----
 C:\Windows\System32>"C:\devtools\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" amd64
 
@@ -38,12 +41,12 @@ Microsoft (R) Windows (R) Resource Compiler Version 6.3.9600.17336
 Copyright (C) Microsoft Corporation.  All rights reserved.
 ----
 
-=== Strawberry Perl
+=== pass:[<span style='color:#006666'>Strawberry Perl</span>]
 * Obtain the Strawberry Perl installer
 * For this walkthrough, Strawberry Perl was installed to `c:\devtools\strawberry`
 * Strawberry Perl include gnu make as `gmake.exe`, so that is the version of make we will use here
 * Check the versions:
-[source]
+[source,Batchfile]
 ----
 C:\Windows\System32>cd c:\devtools\strawberry\
 
@@ -54,7 +57,7 @@ c:\devtools\strawberry\perl\bin>perl --version
 This is perl 5, version 30, subversion 1 (v5.30.1) built for MSWin32-x64-multi-thread
 ----
 
-=== Qt 5.9.9
+=== pass:[<span style='color:#006666'>Qt 5.9.9</span>]
 * Obtain the https://download.qt.io/archive/qt/5.9/5.9.9/[Qt 5.9.9 installer].
 * You might find a https://mirrors.ocf.berkeley.edu/qt/archive/qt/[faster mirror] https://download.qt.io/static/mirrorlist/[here].
 * For this walkthrough, Qt will be installed into `c:\devtools\Qt`
@@ -67,7 +70,7 @@ This is perl 5, version 30, subversion 1 (v5.30.1) built for MSWin32-x64-multi-t
 image:qt5.9Install.png[]
 
 * Check versions and locations:
-[source]
+[source,Batchfile]
 ----
 C:\Windows\System32>set PATH=C:\devtools\Qt\Qt5.9.9\5.9.9\msvc2013_64\bin;%PATH%
 C:\Windows\System32>set PATH=C:\devtools\Qt\Qt5.9.9\Tools\QtCreator\bin;%PATH%
@@ -98,7 +101,7 @@ C:\Windows\System32>where jom
 C:\devtools\Qt\Qt5.9.9\Tools\QtCreator\bin\jom.exe
 ----
 
-=== Git for Windows
+=== pass:[<span style='color:#006666'>Git for Windows</span>]
 * If you do not have git installed, obtain the https://gitforwindows.org/[installer]
 * I chose the following options so I can use git from the windows command prompt:
 
@@ -107,7 +110,7 @@ image:gitForWindowsInstall.png[]
 image:gitForWindowsInstall2.png[]
 
 * Check the version and location:
-[source]
+[source,Batchfile]
 ----
 C:\Windows\System32>git --version
 git version 2.24.1.windows.2
@@ -116,28 +119,29 @@ C:\Windows\System32>where git
 C:\devtools\Git\cmd\git.exe
 ----
 
-== EPICS base
+== pass:[<span style='color:#006666'>EPICS base</span>]
 * Obtain the release of EPICS base that you would like to build from the https://github.com/epics-base/epics-base/releases[EPICS base github repository].
 ** For this example we will use https://github.com/epics-base/epics-base/releases/tag/R3.15.7[release 3.15.7]
 ** Extract the archive to c:\epics\base
-* Create a batch file in `c:\devtools\batchfiles` called `buildEpicsBase_MSVC2013x64.bat` with the following contents:
-[source]
+* Create a batch file in `c:\devtools\Batchfiles` called `buildEpicsBase_MSVC2013x64.bat` with the following contents:
+[source,Batchfile]
 ----
 include::buildEpicsBase_MSVC2013x64.bat[]
 ----
 * Run the batch file, and you will end up at a prompt at `c:\epics\base`.
 * Build EPICS base:
-[source]
+[source,Batchfile]
 ----
 c:\epics\base>gmake -j 4
 ----
 * The ``-j 4` switch tells gmake to use 4 cores. Choose the appropriate number for your processor. Leave it out if you are unsure.
 * Install EPICS base:
-[source]
+[source,Batchfile]
 ----
 c:\epics\base>gmake -j 4 install
 ----
 Do a quick test:
+[source,Batchfile]
 ----
 c:\epics\base>bin\windows-x64\softIoc.exe
 epics> iocInit
@@ -150,8 +154,9 @@ iocRun: All initialization complete
 epics> exit
 ----
 
-== ACAI
+== pass:[<span style='color:#006666'>ACAI</span>]
 * Get the latest version from the https://github.com/andrewstarritt/acai[github repository]:
+[source,Batchfile]
 ----
 c:\epics>git clone https://github.com/andrewstarritt/acai.git
 Cloning into 'acai'...
@@ -163,24 +168,39 @@ Receiving objects: 100% (751/751), 377.70 KiB | 562.00 KiB/s, done.
 Resolving deltas: 100% (549/549), done.
 ----
 * Open `c:\epics\acai\confgure\RELEASE` in a text editor and edit the `EPICS_BASE` location:
+[source,Batchfile]
 ----
 EPICS_BASE=c:\epics\base
 ----
 * Build:
+[source,Batchfile]
 ----
 c:\epics\acai>gmake -j 4
 ----
-** To get it to build, I had to add `#define snprintf _snprintf` to
+** To get it to build, with MSVC2013, the following has to be added to each of:
 *** `acai_client.cpp`
 *** `acai_client_types.cpp`
 *** `test_csnprintf.cpp`
 
+[source,c++]
+----
+#if defined (_MSC_VER)
+// code specific to Visual Studio compiler
+#if (_MSC_VER < 1900)
+#define snprintf   _snprintf
+#endif
+#endif
+----
+
+
 * Install:
+[source,Batchfile]
 ----
 c:\epics\acai>gmake -j 4 install
 ----
 
 * Test:
+[source,Batchfile]
 ----
 c:\epics\acai>set PATH=C:\epics\base\bin\windows-x64;%PATH%
 
@@ -191,11 +211,12 @@ c:\epics\acai>bin\windows-x64\acai_monitor.exe --version
 ACAI 1.5.4 using EPICS 3.15.7
 ----
 
-== Qwt
+== pass:[<span style='color:#006666'>Qwt</span>]
 * Obtain the source for the 6.1.3 release of Qwt from https://sourceforge.net/projects/qwt/files/qwt/6.1.3/[SourceForge]
 * Unzip to `C:\epicsQt\qwt-6.1.3_src`
+* If you want to install Qwt to a custom location, edit `C:\epicsQt\qwt-6.1.3_src\qwtconfig.pri` and change the value of `QWT_INSTALL_PREFIX`
 * Edit `buildEpicsBase_MSVC2013x64.bat` as shown below, and save as `buildQwt_Qt5.9.9_MSVC2013x64.bat`:
-[source]
+[source,Batchfile]
 ----
 include::buildQwt_Qt5.9.9_MSVC2013x64.bat[]
 ----
@@ -211,15 +232,16 @@ C:\epicsQt\qwt-6.1.3_src>jom -j 4
 C:\epicsQt\qwt-6.1.3_src>jom -j 4 install
 ----
 
-== caQtDM
+== pass:[<span style='color:#006666'>caQtDM</span>]
 * Obtain the most recent release from the https://github.com/caqtdm/caqtdm/releases[github repository]
 * Extract the archive to `C:\epicsQt\caqtdm-4.2.4`
 * Create a batch file called `buildcaQtDM_Qt5.9.9_MSVC2013.bat` with the following contents:
-[source]
+[source,Batchfile]
 ----
 include::buildcaQtDM_Qt5.9.9_MSVC2013.bat[]
 ----
 * We will build the manual way, each project at a time, so we can monitor how the build progresses:
+[source,Batchfile]
 ----
 C:\epicsQt\caqtdm-4.2.4>cd caQtDM_QtControls
 
@@ -253,6 +275,7 @@ C:\epicsQt\caqtdm-4.2.4\caQtDM_Viewer>qmake caQtDM_Viewer.pro
 C:\epicsQt\caqtdm-4.2.4\caQtDM_Viewer>jom -j 4
 ----
 * Edit `C:\epicsQt\caqtdm-4.2.4\caQtDM_Tests\softioc.bat` to reflect the current environment:
+[source,shell]
 ----
 @echo on
 set PATH=C:\epics\base\bin\windows-x64;%PATH%
@@ -262,6 +285,7 @@ cd ..\..
 pause
 ----
 * Edit `C:\epicsQt\caqtdm-4.2.4\caQtDM_Tests\mySimulation.db` and comment out the `ACM:PICTURE` record (about line 1094):
+[source,c++]
 ----
 #record(waveform, "ACM:PICTURE"){
 #	field(DTYP, "fileread")
@@ -273,7 +297,7 @@ pause
 #}
 ----
 * Create a batch file called `runcaQtDM_Qt5.9.9_MSVC2013.bat` to run both caQtDM and the test IOC:
-[source]
+[source,Batchfile]
 ----
 include::runcaQtDM_Qt5.9.9_MSVC2013.bat[]
 ----
@@ -284,8 +308,9 @@ image:caQtDMStatus_Qt5.9.9_MSVC2013x64.png[]
 * Followed by `tests.ui`:
 image:caQtDMTestGraphics_Qt5.9.9_MSVC2013x64.png[]
 
-== QE Framework
+== pass:[<span style='color:#006666'>QE Framework</span>]
 * Get the latest version from the https://github.com/qtepics/qeframework[github repository]:
+[source,Batchfile]
 ----
 c:\epicsQt>git clone https://github.com/qtepics/qeframework.git
 Cloning into 'qeframework'...
@@ -298,11 +323,12 @@ Resolving deltas: 100% (2542/2542), done.
 Updating files: 100% (822/822), done.
 ----
 * Edit `buildEpicsQt_MSVC2013x64.bat` and add the entries required by qeFramework and qeGui:
-[source]
+[source,Batchfile]
 ----
 include::buildEpicsQt_Qt5.9.9_MSVC2013x64.bat[]
 ----
 * Build:
+[source,Batchfile]
 ----
 C:\epicsQt\qeframework\qeframeworkSup\project>qmake framework.pro
 Info: creating stash file C:\epicsQt\qeframework\qeframeworkSup\project\.qmake.stash
@@ -310,10 +336,12 @@ Info: creating stash file C:\epicsQt\qeframework\qeframeworkSup\project\.qmake.s
 C:\epicsQt\qeframework\qeframeworkSup\project>jom -j 4 -f Makefile.windows-x64
 ----
 * Install:
+[source,Batchfile]
 ----
 C:\epicsQt\qeframework\qeframeworkSup\project>jom -j 4 -f Makefile.windows-x64 install
 ----
 * Navigate to the plugin directory and build the plugin:
+[source,Batchfile]
 ----
 C:\epicsQt\qeframework\qeframeworkSup\project>cd ..\..\qepluginApp\project
 
@@ -323,12 +351,14 @@ Info: creating stash file C:\epicsQt\qeframework\qepluginApp\project\.qmake.stas
 C:\epicsQt\qeframework\qepluginApp\project>jom -j 4 -f Makefile.windows-x64
 ----
 * Install the plugin:
+[source,Batchfile]
 ----
 C:\epicsQt\qeframework\qepluginApp\project>jom -j 4 -f Makefile.windows-x64 install
 ----
 
-== QEGui
+== pass:[<span style='color:#006666'>QEGui</span>]
 * Still in the same environment, navigate to the epicsQt directory, and get the latest version from the https://github.com/qtepics[github repository]:
+[source,Batchfile]
 ----
 C:\epicsQt\qeframework\qepluginApp\project>cd ..\..\..
 
@@ -355,9 +385,9 @@ C:\epicsQt\qegui\qeguiApp\project>jom -j 4 -f Makefile.windows-x64
 C:\epicsQt\qegui\qeguiApp\project>jom -j 4 -f Makefile.windows-x64 install
 ----
 
-== Running QEGui
+== pass:[<span style='color:#006666'>Running QEGui</span>]
 * The most convenient way to launch qegui is via a batch file called that sets the required environment variables:
-[source]
+[source,Batchfile]
 ----
 include::runQEGui_Qt5.9.9_MSVC2013.bat[]
 ----
@@ -367,9 +397,9 @@ image:qeguiWindow.png[]
 
 image:qeguiAbout_Qt5.9.9_MSVC2013x64.png[]
 
-=== Checking caQtDM integration
+=== pass:[<span style='color:#006666'>Checking caQtDM integration</span>]
 * Create a batch file called `qeguiCheckcaQtDM_Qt5.9.9_MSVC2013.bat`:
-[source]
+[source,Batchfile]
 ----
 include::qeguiCheckcaQtDM_Qt5.9.9_MSVC2013.bat[]
 ----
@@ -377,10 +407,10 @@ include::qeguiCheckcaQtDM_Qt5.9.9_MSVC2013.bat[]
 image:qeGui_caQtDMTestGraphics_Qt5.9.9_MSVC2013x64.png[]
 
 
-== Running Qt Designer
+== pass:[<span style='color:#006666'>Running Qt Designer</span>]
 
 * Similarly, the most convenient way to launch Qt Designer with the Epics Qt plugins loaded is by a batch file:
-[source]
+[source,Batchfile]
 ----
 include::runQtDesigner_Qt5.5.9_MSVC2013.bat[]
 ----
