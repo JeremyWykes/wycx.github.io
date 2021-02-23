@@ -45,6 +45,13 @@ C:\devtools\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.16.27023\bin
 C:\devtools\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build>nmake
 Microsoft (R) Program Maintenance Utility Version 14.16.27034.0
 Copyright (C) Microsoft Corporation.  All rights reserved.
+
+C:\devtools\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build>where link
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.16.27023\bin\HostX64\x64\link.exe
+
+C:\devtools\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build>link /?
+Microsoft (R) Incremental Linker Version 14.16.27045.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
 ```
 
 ==== Strawberry Perl
@@ -71,8 +78,8 @@ This is perl 5, version 30, subversion 1 (v5.30.1) built for MSWin32-x64-multi-t
 * Skip making an account
 ** Newer installer don't let you skip making an account unless you run the installer without internet connection so it can't phone home, or set the proxy to `0.0.0.0:123`
 * When installing Qt 5.9.9 make sure to select the following components:
-  * MSVC 2017 64-bit
-  * If you want to try MSVC 2017 32-bit builds, or MinGW builds, you can choose those components here as well
+  ** MSVC 2017 64-bit
+  ** If you want to try MSVC 2017 32-bit builds, or MinGW builds, you can choose those components here as well
 
 image::qtInstall.png[]
 
@@ -382,6 +389,7 @@ C:\epicsQt\qegui\qeguiApp\project>jom -j 4 -f Makefile.windows-x64 install
 
 ==== Archiver Appliance support
 
+* Following the build instructions https://github.com/protocolbuffers/protobuf/blob/master/cmake/README.md[here] and https://qtepics.github.io/archiver_appliance.html[here]:
 ```
 C:\epics\gui\protobuf\cmake\build\release>cmake -G "NMake Makefiles" ^
 More? -DCMAKE_BUILD_TYPE=Release ^
