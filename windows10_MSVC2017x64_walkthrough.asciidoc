@@ -13,6 +13,7 @@
   * Windows 10 SDK
 * I chose to install to `c:\devtools\Visual Studio\2019` rather than `Program Files`
 * We are choosing the MSCV 2017 tools rather than the MSVC 2019 tools, as Qt is built using MSVC 2017
+* I chose the version of Windows 10 SDK to match the Build of my system, obtained by running `systeminfo` or `winver`. I don't think it makes any difference.
 
 image::MSVC_2019_installation_details.png[]
 
