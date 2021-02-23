@@ -445,13 +445,13 @@ start C:\epicsQt\qegui\bin\windows-x64\qegui.exe
 
 * Run the batch file and you should get the following window:
 
-image::qeguiWindow.png
+image::qeguiWindow.png[]
 
-image::qeguiAbout.png
+image::qeguiAbout.png[]
 
 * Open the stripchart:
 
-image::qeguiStripchart.png
+image::qeguiStripchart.png[]
 
 === Running Qt Designer
 
@@ -477,8 +477,8 @@ start C:\devtools\Qt\Qt5.14.0\5.14.0\msvc2017_64\bin\designer.exe
 
 * Run the batch file and you should get the following window:
 
-image::qtDesigner.png
+image::qtDesigner.png[]
 
 * Check which plugins are loaded:
 
-image::qtDesignerAboutPlugins.png
+image::qtDesignerAboutPlugins.png[]
