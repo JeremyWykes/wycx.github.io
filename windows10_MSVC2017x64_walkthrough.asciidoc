@@ -382,6 +382,50 @@ C:\epicsQt\qegui\qeguiApp\project>jom -j 4 -f Makefile.windows-x64
 C:\epicsQt\qegui\qeguiApp\project>jom -j 4 -f Makefile.windows-x64 install
 ```
 
+==== Archiver Appliance support
+
+```
+C:\epics\gui\protobuf\cmake\build\release>cmake -G "NMake Makefiles" ^
+More? -DCMAKE_BUILD_TYPE=Release ^
+More? -DCMAKE_CXX_STANDARD=11 ^
+More? -Dprotobuf_BUILD_SHARED_LIBS=ON ^
+More? -Dprotobuf_BUILD_TESTS=OFF ^
+More? -DCMAKE_INSTALL_PREFIX=../../../../install ^
+More? ../..
+-- The C compiler identification is MSVC 19.16.27045.0
+-- The CXX compiler identification is MSVC 19.16.27045.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.16.27023/bin/HostX64/x64/cl.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.16.27023/bin/HostX64/x64/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+--
+-- 3.11.1.0
+-- Looking for pthread.h
+-- Looking for pthread.h - not found
+-- Found Threads: TRUE
+-- Could NOT find ZLIB (missing: ZLIB_LIBRARY) (found version "1.2.11")
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/epics/gui/protobuf/cmake/build/release
+
+C:\epics\gui\protobuf\cmake\build\release>nmake
+```
+```
+C:\epics\gui\protobuf\cmake\build\release>nmake install
+```
+```
+C:\epics\gui\protobuf\cmake\build\release>protoc --version
+libprotoc 3.11.1
+```
+
+
+
 === Running QEGui
 
 * The most convenient way to launch qegui is via a batch file that sets the required environment variables:
