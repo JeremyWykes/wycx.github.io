@@ -1,11 +1,5 @@
 = Building EPICS base, QE Framework and qegui on Windows 10 x64 with Qt 5.9.9 and MSVC2017
 
-[Environment](#environment)<br>
-[EPICS base](#epicsBase)<br>
-[ACAI](#ACAI)<br>
-[Qwt](#Qwt)<br>
-[EPICS Qt](#EpicsQt)<br>
-
 == Environment
 
 * These instructions have been developed on Microsoft Windows 10 Enterprise x64 and Windows 10 Education x64. Should work on other versions of Windows 10, Windows 8 and Windows 7. You will have to make the appropriate adjustments if you want a 32-bit build.
