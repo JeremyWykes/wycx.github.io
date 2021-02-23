@@ -1,4 +1,4 @@
-=Building EPICS base, QE Framework and qegui on Windows 10 x64 with Qt 5.9.9 and MSVC2017
+= Building EPICS base, QE Framework and qegui on Windows 10 x64 with Qt 5.9.9 and MSVC2017
 
 [Environment](#environment)<br>
 [EPICS base](#epicsBase)<br>
