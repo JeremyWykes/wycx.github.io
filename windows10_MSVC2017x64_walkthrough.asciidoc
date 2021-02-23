@@ -13,7 +13,7 @@
   * Windows 10 SDK
 * I chose to install to `c:\devtools\Visual Studio\2019` rather than `Program Files`
 * We are choosing the MSCV 2017 tools rather than the MSVC 2019 tools, as Qt is built using MSVC 2017
-image::visualStudio2019install.png
+image::visualStudio2019install.png[]
 * Check the versions:
 
 ```
@@ -71,7 +71,7 @@ This is perl 5, version 30, subversion 1 (v5.30.1) built for MSWin32-x64-multi-t
   * MSVC 2017 64-bit
   * If you want to try MSVC 2017 32-bit builds, or MinGW builds, you can choose those components here as well
 
-image::qtInstall.png
+image::qtInstall.png[]
 
 * Check the tools:
 
@@ -110,9 +110,9 @@ C:\devtools\Qt\Qt5.14.0\Tools\QtCreator\bin\jom.exe
 * If you do not have git installed, obtain the https://gitforwindows.org/[installer]
 * I chose the following options so I can use git from the windows command prompt:
 
-image::gitForWindowsInstall.png
+image::gitForWindowsInstall.png[]
 
-image::gitForWindowsInstall2.png
+image::gitForWindowsInstall2.png[]
 
 * Check the version:
 
