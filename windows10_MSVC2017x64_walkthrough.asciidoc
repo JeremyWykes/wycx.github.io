@@ -80,8 +80,9 @@ This is perl 5, version 30, subversion 1 (v5.30.1) built for MSWin32-x64-multi-t
 * When installing Qt 5.9.9 make sure to select the following components:
   ** MSVC 2017 64-bit
   ** If you want to try MSVC 2017 32-bit builds, or MinGW builds, you can choose those components here as well
+  ** Newer versions of qeframework require QT Data Visualization
 
-image::qtInstall.png[]
+image::qt5.9.9_installer.png[]
 
 * Check the tools:
 
